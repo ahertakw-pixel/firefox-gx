@@ -1,0 +1,27 @@
+{
+  "name": "firefox-gx-browser",
+  "version": "1.1.0",
+  "description": "A Chromium-powered gaming-style web browser for Windows",
+  "main": "main.js",
+  "author": "FireFox GX",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable --x64"
+  },
+  "devDependencies": {
+    "electron": "^45.0.0",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "com.firefoxgx.browser",
+    "productName": "FireFox GX",
+    "asar": true,
+    "directories": { "output": "../../outputs" },
+    "files": ["main.js", "preload.js", "index.html", "renderer.js", "styles.css", "package.json"],
+    "win": {
+      "target": ["portable"],
+      "artifactName": "FireFox-GX-${version}-x64.exe"
+    }
+  }
+}

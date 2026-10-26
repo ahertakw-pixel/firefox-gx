@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:;">
+  <title>FireFox GX</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="neon">
+  <div class="shell">
+    <aside class="sidebar">
+      <button class="brand" id="brandHome" aria-label="FireFox GX home"><span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M29 11c-3-4-9-5-14-2-5 3-8 9-6 15 1 6 7 10 13 9 6-1 10-6 10-12 0-3-1-6-3-8"/><path d="M12 14c3 1 5 3 5 6 0 2-2 4-4 4m11-16-2 6 6 1-5 4 3 5"/></svg></span><span>FireFox <b>GX</b></span></button>
+      <div class="browser-profile"><div class="profile-avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4.5 8 7.5 4.3L19.5 8M12 12.3V21"/></svg></div><div><strong>PLAYER PROFILE</strong><small>CHROMIUM SESSION</small></div><span class="profile-dot"></span></div>
+      <nav class="nav">
+        <button class="nav-item active" id="startNav" data-action="home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z"/></svg>Start page</button>
+        <button class="nav-item" data-url="https://store.steampowered.com/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="15.5" cy="8.5" r="2.5"/><path d="m4 14 5 2 3 3"/></svg>Steam</button>
+        <button class="nav-item" data-url="https://www.twitch.tv/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h17v12l-5 5h-4l-3 3v-3H5V3Z"/><path d="M10 8v5m6-5v5"/></svg>Twitch</button>
+        <button class="nav-item" data-url="https://discord.com/app"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 6a14 14 0 0 1 10 0l3 12a17 17 0 0 1-4 2l-1-2m-6 0-1 2a17 17 0 0 1-4-2L7 6Z"/><path d="M9 13h.01M15 13h.01"/></svg>Discord</button>
+        <button class="nav-item" id="extensionsNav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M8 8h8m-8 4h8m-8 4h5"/></svg>Extensions</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="side-label">BOOKMARKS</div>
+        <button class="bookmark" data-url="https://www.youtube.com/"><span class="bookmark-icon red"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8a3 3 0 0 0-2-2c-2-.5-7-.5-7-.5s-5 0-7 .5a3 3 0 0 0-2 2 25 25 0 0 0 0 8 3 3 0 0 0 2 2c2 .5 7 .5 7 .5s5 0 7-.5a3 3 0 0 0 2-2 25 25 0 0 0 0-8Z"/><path d="m10 9 5 3-5 3V9Z"/></svg></span>YouTube <span class="launch">↗</span></button>
+        <button class="bookmark" data-url="https://www.reddit.com/"><span class="bookmark-icon orange"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M8.5 14a4 4 0 0 0 7 0M9 10h.01m6 0h.01M12 5l1-3 4 1"/><circle cx="19" cy="4" r="1"/></svg></span>Reddit <span class="launch">↗</span></button>
+        <button class="bookmark" data-url="https://open.spotify.com/"><span class="bookmark-icon green"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M7 10a12 12 0 0 1 10 1m-9 2a9 9 0 0 1 8 1m-7 2a6 6 0 0 1 5 1"/></svg></span>Spotify <span class="launch">↗</span></button>
+      </div>
+      <div class="sidebar-foot"><span class="pulse"></span> CHROMIUM CORE <span class="version">v1.1</span></div>
+    </aside>
+
+    <main class="main">
+      <header class="browserbar">
+        <div class="browser-controls">
+          <button class="control" id="back" title="Back" aria-label="Back"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg></button>
+          <button class="control" id="forward" title="Forward" aria-label="Forward"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6m6 6H4"/></svg></button>
+          <button class="control" id="reload" title="Reload" aria-label="Reload"><svg viewBox="0 0 24 24"><path d="M20 7v5h-5M4.5 9a8 8 0 0 1 13.3-3L20 8M4 17v-5h5m10.5 3a8 8 0 0 1-13.3 3L4 16"/></svg></button>
+          <button class="control home-control" id="home" title="Start page" aria-label="Start page"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10h-6v-7H9v7H3V10Z"/></svg></button>
+        </div>
+        <form class="address-form" id="addressForm">
+          <span class="address-lock" id="secureIcon"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3M12 14v3"/></svg></span>
+          <input id="address" type="text" spellcheck="false" autocomplete="off" placeholder="Search Google or enter a web address" aria-label="Search or enter web address">
+          <button class="go-button" type="submit" aria-label="Go"><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+        </form>
+        <button class="theme-toggle" id="themeCycle" title="Change theme" aria-label="Change theme"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-1-.7-1.7-1.7-1.7H17a2 2 0 0 1-2-2c0-.7.5-1.3 1-1.8.4-.4.6-.9.6-1.5A2 2 0 0 0 14.5 3H12Z"/><path d="M7.5 12h.01M10 7.5h.01M15 15.5h.01"/></svg></button>
+      </header>
+
+      <section class="start-page" id="startPage">
+        <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+        <div class="start-content">
+          <div class="hero-label"><span class="pulse"></span> YOUR WEB. YOUR WORLD.</div>
+          <div class="logo-lockup"><span class="flame-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M28 9c1 5-3 6-2 10 2-1 4-3 4-5 5 5 7 11 3 17-3 5-10 7-16 4C8 31 6 24 9 18c2 4 4 5 6 5-2-7 3-13 9-19 0 3 1 4 4 5Z"/><path d="M19 29c0-3 2-5 4-7 1 3 4 5 3 8a4 4 0 0 1-7-1Z"/></svg></span><h1>FireFox <em>GX</em></h1></div>
+          <p class="tagline">A browser built for whatever you’re into.</p>
+          <form class="hero-search" id="heroSearch"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="7.3"/><path d="m16 16 5 5"/></svg><input id="heroInput" placeholder="Search the web or type a URL" autocomplete="off" spellcheck="false" aria-label="Search the web"><kbd>ENTER ↵</kbd></form>
+          <div class="speed-label">QUICK ACCESS <span></span></div>
+          <div class="speed-dial">
+            <button class="site-tile" data-url="https://www.youtube.com/"><span class="site-icon youtube"><svg viewBox="0 0 24 24"><path d="M21 8a3 3 0 0 0-2-2c-2-.5-7-.5-7-.5s-5 0-7 .5a3 3 0 0 0-2 2 25 25 0 0 0 0 8 3 3 0 0 0 2 2c2 .5 7 .5 7 .5s5 0 7-.5a3 3 0 0 0 2-2 25 25 0 0 0 0-8Z"/><path d="m10 9 5 3-5 3V9Z"/></svg></span><span>YouTube</span></button>
+            <button class="site-tile" data-url="https://www.twitch.tv/"><span class="site-icon twitch"><svg viewBox="0 0 24 24"><path d="M5 3h17v12l-5 5h-4l-3 3v-3H5V3Z"/><path d="M10 8v5m6-5v5"/></svg></span><span>Twitch</span></button>
+            <button class="site-tile" data-url="https://store.steampowered.com/"><span class="site-icon steam"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="15.5" cy="8.5" r="2.5"/><path d="m4 14 5 2 3 3"/></svg></span><span>Steam</span></button>
+            <button class="site-tile" data-url="https://discord.com/app"><span class="site-icon discord"><svg viewBox="0 0 24 24"><path d="M7 6a14 14 0 0 1 10 0l3 12a17 17 0 0 1-4 2l-1-2m-6 0-1 2a17 17 0 0 1-4-2L7 6Z"/><path d="M9 13h.01M15 13h.01"/></svg></span><span>Discord</span></button>
+            <button class="site-tile" data-url="https://www.google.com/"><span class="site-icon google"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7.5"/><path d="m16.5 16.5 4 4M8.5 11h5"/></svg></span><span>Google</span></button>
+            <button class="site-tile" data-url="https://www.reddit.com/"><span class="site-icon reddit"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M8.5 14a4 4 0 0 0 7 0M9 10h.01m6 0h.01M12 5l1-3 4 1"/><circle cx="19" cy="4" r="1"/></svg></span><span>Reddit</span></button>
+            <button class="site-tile" data-url="https://www.roblox.com/"><span class="site-icon roblox"><svg viewBox="0 0 24 24"><path d="m7 3 14 4-4 14-14-4L7 3Z"/><path d="m10 10 4 1-1 4-4-1 1-4Z"/></svg></span><span>Roblox</span></button>
+            <button class="site-tile" data-url="https://chromewebstore.google.com/category/themes"><span class="site-icon themes"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-1-.7-1.7-1.7-1.7H17a2 2 0 0 1-2-2c0-.7.5-1.3 1-1.8.4-.4.6-.9.6-1.5A2 2 0 0 0 14.5 3H12Z"/><path d="M7.5 12h.01M10 7.5h.01M15 15.5h.01"/></svg></span><span>Themes</span></button>
+          </div>
+          <div class="home-bottom"><div class="feature-card"><span class="feature-icon"><svg viewBox="0 0 24 24"><path d="m12 3 2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2L12 3Z"/><path d="m19 15 1.2 2.8L23 19l-2.8 1.2L19 23l-1.2-2.8L15 19l2.8-1.2L19 15Z"/></svg></span><div><b>Make it yours</b><small>Four bold color themes. Pick your vibe.</small></div><button id="chooseTheme">THEMES <span>↗</span></button></div><div class="home-status"><span class="pulse"></span> CHROMIUM ENGINE <span class="status-divider">·</span> READY TO BROWSE</div></div>
+        </div>
+      </section>
+      <section class="extensions-page" id="extensionsPage" hidden>
+        <div class="extension-manager">
+          <div class="manager-heading"><div><div class="hero-label left-label"><span class="pulse"></span> YOUR BROWSER ADD-ONS</div><h2>Extension locker</h2><p>Add extensions from your Chrome profile or load an unpacked extension folder into FireFox GX.</p></div><div class="manager-actions"><button class="secondary-button" id="scanChrome"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h9l4 8M8 4l4 8 9-1"/></svg>FIND IN CHROME</button><button class="primary-button" id="addFolder"><svg viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"/></svg>ADD EXTENSION</button></div></div>
+          <div class="extension-note"><span class="note-icon"><svg viewBox="0 0 24 24"><path d="M12 3 21 20H3L12 3Z"/><path d="M12 9v5m0 3h.01"/></svg></span><span><b>Compatibility varies.</b> FireFox GX can load unpacked Chrome extensions, but it does not implement every Chrome extension API. Packed <code>.crx</code> files cannot be installed directly. Only add extensions you trust; their permissions can let them read or change pages.</span></div>
+          <div class="manager-columns">
+            <div class="manager-panel"><div class="panel-heading"><div><strong>Chrome profile</strong><small id="scanStatus">Import extensions already installed in Chrome.</small></div><span class="panel-count" id="chromeCount">0</span></div><div class="extension-list" id="chromeResults"><div class="empty-state"><span class="empty-glyph">⌕</span><b>Find your Chrome extensions</b><small>Scan your Chrome profiles and choose which ones to add to FireFox GX.</small></div></div></div>
+            <div class="manager-panel"><div class="panel-heading"><div><strong>Added to FireFox GX</strong><small>Loaded on websites and restored when the browser starts.</small></div><span class="panel-count" id="installedCount">0</span></div><div class="extension-list" id="installedExtensions"><div class="empty-state"><span class="empty-glyph">✳</span><b>No extensions added yet</b><small>Add from Chrome or load an unpacked folder to get started.</small></div></div></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="theme-popover" id="themePopover" aria-label="Choose a theme">
+    <div class="popover-head"><strong>Browser themes</strong><button id="closeThemes" aria-label="Close themes">×</button></div>
+    <div class="theme-options">
+      <button class="theme-option selected" data-theme-choice="neon"><span class="theme-swatch swatch-neon"></span><span>Neon Rush</span><i>✓</i></button>
+      <button class="theme-option" data-theme-choice="arcade"><span class="theme-swatch swatch-arcade"></span><span>Arcade Glow</span><i>✓</i></button>
+      <button class="theme-option" data-theme-choice="frost"><span class="theme-swatch swatch-frost"></span><span>Frostbyte</span><i>✓</i></button>
+      <button class="theme-option" data-theme-choice="ember"><span class="theme-swatch swatch-ember"></span><span>Ember Core</span><i>✓</i></button>
+    </div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>
