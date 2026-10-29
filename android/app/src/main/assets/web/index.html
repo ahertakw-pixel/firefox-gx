@@ -41,7 +41,10 @@
           <button class="go-button" type="submit" aria-label="Go"><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
         </form>
         <button class="theme-toggle" id="themeCycle" title="Change theme" aria-label="Change theme"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-1-.7-1.7-1.7-1.7H17a2 2 0 0 1-2-2c0-.7.5-1.3 1-1.8.4-.4.6-.9.6-1.5A2 2 0 0 0 14.5 3H12Z"/><path d="M7.5 12h.01M10 7.5h.01M15 15.5h.01"/></svg></button>
+        <button class="control utility-control" id="downloadButton" title="Downloads" aria-label="Downloads">↓</button>
+        <button class="control utility-control" id="auroraButton" title="Ask Aurora" aria-label="Ask Aurora">✦</button>
       </header>
+      <div class="tab-strip" id="tabStrip" aria-label="Browser tabs"><button class="new-tab-button" id="newTabButton" title="New tab">+</button></div>
 
       <section class="start-page" id="startPage">
         <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
@@ -66,14 +69,27 @@
       </section>
       <section class="extensions-page" id="extensionsPage" hidden>
         <div class="extension-manager">
-          <div class="manager-heading"><div><div class="hero-label left-label"><span class="pulse"></span> YOUR BROWSER ADD-ONS</div><h2>Extension locker</h2><p>Add extensions from your Chrome profile or load an unpacked extension folder into FireFox GX.</p></div><div class="manager-actions"><button class="secondary-button" id="scanChrome"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h9l4 8M8 4l4 8 9-1"/></svg>FIND IN CHROME</button><button class="primary-button" id="addFolder"><svg viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"/></svg>ADD EXTENSION</button></div></div>
-          <div class="extension-note"><span class="note-icon"><svg viewBox="0 0 24 24"><path d="M12 3 21 20H3L12 3Z"/><path d="M12 9v5m0 3h.01"/></svg></span><span><b>Compatibility varies.</b> FireFox GX can load unpacked Chrome extensions, but it does not implement every Chrome extension API. Packed <code>.crx</code> files cannot be installed directly. Only add extensions you trust; their permissions can let them read or change pages.</span></div>
+          <div class="manager-heading"><div><div class="hero-label left-label"><span class="pulse"></span> YOUR BROWSER ADD-ONS</div><h2>Extension locker</h2><p>Import Chrome or Firefox extensions, test your own add-ons, or package a safety-reviewed .fgxe extension.</p></div><div class="manager-actions"><button class="secondary-button" id="scanChrome">FIND IN CHROME</button><button class="secondary-button" id="importFgxe">IMPORT .FGXE</button><button class="primary-button" id="publishFgxe">PUBLISH .FGXE</button><button class="primary-button" id="addFolder">ADD EXTENSION</button></div></div>
+          <div class="extension-note"><span class="note-icon"><svg viewBox="0 0 24 24"><path d="M12 3 21 20H3L12 3Z"/><path d="M12 9v5m0 3h.01"/></svg></span><span><b>Compatibility varies.</b> Desktop can scan Chrome and Firefox profiles and loads compatible unpacked extensions. Android can import extension ZIP or <code>.fgxe</code> packages, but WebView does not implement all browser extension APIs. Every add-on runs code and may access sites listed in its permissions.</span></div>
           <div class="manager-columns">
-            <div class="manager-panel"><div class="panel-heading"><div><strong>Chrome profile</strong><small id="scanStatus">Import extensions already installed in Chrome.</small></div><span class="panel-count" id="chromeCount">0</span></div><div class="extension-list" id="chromeResults"><div class="empty-state"><span class="empty-glyph">⌕</span><b>Find your Chrome extensions</b><small>Scan your Chrome profiles and choose which ones to add to FireFox GX.</small></div></div></div>
+            <div class="manager-panel"><div class="panel-heading"><div><strong>Chrome &amp; Firefox profiles</strong><small id="scanStatus">Import compatible extensions from installed desktop browsers.</small></div><span class="panel-count" id="chromeCount">0</span></div><div class="extension-list" id="chromeResults"><div class="empty-state"><span class="empty-glyph">⌕</span><b>Find browser extensions</b><small>Scan Chrome and Firefox desktop profiles, then choose compatible add-ons to add to FireFox GX.</small></div></div></div>
             <div class="manager-panel"><div class="panel-heading"><div><strong>Added to FireFox GX</strong><small>Loaded on websites and restored when the browser starts.</small></div><span class="panel-count" id="installedCount">0</span></div><div class="extension-list" id="installedExtensions"><div class="empty-state"><span class="empty-glyph">✳</span><b>No extensions added yet</b><small>Add from Chrome or load an unpacked folder to get started.</small></div></div></div>
           </div>
         </div>
       </section>
+      <section class="extensions-page tool-page" id="devPage" hidden><div class="extension-manager"><div class="hero-label left-label"><span class="pulse"></span> EXTENSION STUDIO</div><h2>Build for FireFox GX</h2><p class="tool-intro">Create a folder with manifest.json and your scripts/styles, import it for testing, then package it as <code>.fgxe</code>. FireFox GX runs compatible content scripts; Chrome APIs and Firefox APIs may need adaptation.</p><div class="manager-actions"><button class="primary-button" id="devImport">IMPORT TO TEST</button><button class="secondary-button" id="devPublish">SAFETY CHECK &amp; PUBLISH</button></div><div class="manager-panel code-panel"><div class="panel-heading"><strong>Starter manifest.json</strong><small>Save as manifest.json in your extension folder</small></div><pre>{
+  "manifest_version": 3,
+  "name": "My GX Extension",
+  "version": "1.0.0",
+  "description": "What it does",
+  "permissions": [],
+  "content_scripts": [{
+    "matches": ["https://example.com/*"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }]
+}</pre><p>Test imports require explicit permission review. The package scanner flags dynamic code and broad privileges. It is a basic safety check, not a guarantee that code is harmless.</p></div></div></section>
+      <section class="extensions-page tool-page" id="toolsPage" hidden><div class="extension-manager"><div class="hero-label left-label"><span class="pulse"></span> BROWSER TOOLS</div><h2>Privacy &amp; downloads</h2><div class="tool-grid"><article class="manager-panel tool-card"><h3>Network proxy</h3><p>Connect through an HTTP or SOCKS proxy supplied by a provider. This routes browser traffic only and is not a full device VPN.</p><input id="proxyUrl" placeholder="socks5://host:port or https://host:port"><button class="primary-button" id="proxyApply">APPLY PROXY</button><small id="proxyStatus">Not connected</small></article><article class="manager-panel tool-card"><h3>Downloads</h3><p>Files downloaded from the active page are saved to your device’s Downloads folder.</p><button class="secondary-button" id="openDownloads">OPEN DOWNLOADS</button></article><article class="manager-panel tool-card"><h3>Aurora AI Overview</h3><p>Enter your Groq API key inside FireFox GX. The desktop app encrypts it in local app storage. It is sent to Groq only when you ask Aurora.</p><input id="groqKey" type="password" autocomplete="off" placeholder="Groq API key"><button class="primary-button" id="saveGroqKey">SAVE KEY</button><small id="auroraStatus">Key not saved</small><textarea id="auroraPrompt" placeholder="Ask Aurora about the page or anything else"></textarea><button class="secondary-button" id="askAurora">ASK AURORA</button><pre id="auroraAnswer" class="aurora-answer" hidden></pre></article></div></div></section>
     </main>
   </div>
   <div class="theme-popover" id="themePopover" aria-label="Choose a theme">
