@@ -244,8 +244,13 @@ document.getElementById('downloadButton').addEventListener('click', () => window
 document.getElementById('auroraButton').addEventListener('click', showTools);
 document.getElementById('importFgxe').addEventListener('click', async () => { const r = await window.firefoxGX.importFgxe(); if (r.ok) document.getElementById('scanStatus').textContent = `${r.name} imported after safety review.`; else if (!r.cancelled) document.getElementById('scanStatus').textContent = r.error || 'Package import cancelled.'; });
 document.getElementById('publishFgxe').addEventListener('click', async () => { const r = await window.firefoxGX.publishFgxe(); document.getElementById('scanStatus').textContent = r.ok ? `Published package: ${r.path}` : r.error || 'Package publishing cancelled.'; });
-document.getElementById('devImport').addEventListener('click', () => document.getElementById('addFolder').click());
-document.getElementById('devPublish').addEventListener('click', () => document.getElementById('publishFgxe').click());
+document.getElementById('devImport').addEventListener('click', () => { showExtensions(); document.getElementById('addFolder').click(); });
+document.getElementById('devPublish').addEventListener('click', async () => {
+  const status = document.getElementById('devStatus');
+  const result = await window.firefoxGX.publishFgxe();
+  if (window.firefoxGX.platform === 'android') status.textContent = result ? 'Choose an installed extension in the Android review dialog, then save the .fgxe package.' : 'Could not open package publishing.';
+  else status.textContent = result?.ok ? `Published .fgxe package: ${result.path}` : result?.error || 'Package publishing cancelled.';
+});
 document.getElementById('proxyApply').addEventListener('click', async () => { const status = document.getElementById('proxyStatus'); status.textContent = await window.firefoxGX.setProxy(document.getElementById('proxyUrl').value) ? 'Proxy applied to browser traffic.' : 'Proxy settings are not supported on this build.'; });
 document.getElementById('openDownloads').addEventListener('click', () => window.firefoxGX.openDownloads());
 document.getElementById('saveGroqKey').addEventListener('click', async () => { const key = document.getElementById('groqKey').value.trim(); if (!key) return; document.getElementById('auroraStatus').textContent = await window.firefoxGX.saveAuroraKey(key) ? 'Saved locally.' : 'Could not save this key.'; document.getElementById('groqKey').value = ''; });
