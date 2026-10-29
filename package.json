@@ -17,7 +17,7 @@
     "appId": "com.firefoxgx.browser",
     "productName": "FireFox GX",
     "asar": true,
-    "compression": "store",
+    "compression": "normal",
     "directories": { "output": "../../outputs" },
     "files": ["main.js", "preload.js", "index.html", "renderer.js", "styles.css", "package.json"],
     "win": {
