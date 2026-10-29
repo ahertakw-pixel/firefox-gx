@@ -318,7 +318,6 @@ if (window.firefoxGX.platform === 'android') {
   document.getElementById('scanStatus').textContent = 'Import extension ZIP or .fgxe packages from your device.';
   document.querySelector('.manager-heading p').textContent = 'Import a ZIP containing an unpacked Chrome extension. FireFox GX can run compatible page scripts on websites.';
   document.querySelector('.extension-note span:last-child').innerHTML = '<b>Mobile compatibility is limited.</b> Android WebView cannot run all Chrome extension APIs. This port imports ZIPs and injects compatible content scripts and styles into matching websites; service workers, toolbar actions, and many extension APIs are not supported. Only import extensions you trust.';
-  document.getElementById('proxyApply').disabled = true;
   document.getElementById('openDownloads').disabled = true;
 }
 

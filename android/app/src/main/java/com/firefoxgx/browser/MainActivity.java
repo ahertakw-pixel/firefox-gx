@@ -18,6 +18,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.DownloadListener;
 import android.webkit.URLUtil;
+import androidx.webkit.ProxyConfig;
+import androidx.webkit.ProxyController;
+import androidx.webkit.WebViewFeature;
 import android.app.DownloadManager;
 import android.os.Environment;
 import android.widget.FrameLayout;
@@ -619,7 +622,18 @@ public class MainActivity extends Activity {
         @JavascriptInterface public boolean openDownloads() {
             runOnUi(() -> { try { Intent intent = new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS); intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); startActivity(intent); } catch (Exception ignored) {} }); return true;
         }
-        @JavascriptInterface public boolean setProxy(String value) { return false; }
+        @JavascriptInterface public boolean setProxy(String value) {
+            try {
+                if (!WebViewFeature.isFeatureSupported(WebViewFeature.PROXY_OVERRIDE)) return false;
+                ProxyController controller = ProxyController.getInstance();
+                if (value == null || value.trim().isEmpty()) { controller.clearProxyOverride(Runnable::run, () -> {}); return true; }
+                Uri uri = Uri.parse(value.trim()); String scheme = uri.getScheme() == null ? "http" : uri.getScheme().toLowerCase(Locale.ROOT);
+                if ("socks5".equals(scheme) || "socks4".equals(scheme)) scheme = "socks";
+                if (!("http".equals(scheme) || "https".equals(scheme) || "socks".equals(scheme)) || uri.getHost() == null || uri.getUserInfo() != null) return false;
+                int port = uri.getPort(); String rule = scheme + "://" + uri.getHost() + (port > 0 ? ":" + port : "");
+                controller.setProxyOverride(new ProxyConfig.Builder().addProxyRule(rule).build(), Runnable::run, () -> {}); return true;
+            } catch (Exception error) { return false; }
+        }
         @JavascriptInterface public boolean saveAuroraKey(String key) { try { return encryptAndStoreKey(key); } catch (Exception error) { return false; } }
         @JavascriptInterface public boolean hasAuroraKey() { return !getSharedPreferences("aurora", MODE_PRIVATE).getString("key", "").isEmpty(); }
         @JavascriptInterface public String askAurora(String prompt) { try { return askGroq(prompt); } catch (Exception error) { return "Aurora: " + error.getMessage(); } }
